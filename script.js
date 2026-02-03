@@ -187,6 +187,152 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(createHeart, 800);
 
+    // --- CINEMATIC ENHANCEMENTS ---
+
+    // 1. Cinematic Intro & Typewriter
+    const introScreen = document.getElementById('intro-screen');
+    const typewriter = document.getElementById('typewriter');
+    const introText = "It all started with a smile… and now it's our forever story. ❤️";
+    let textIndex = 0;
+
+    const typeEffect = () => {
+        if (textIndex < introText.length) {
+            typewriter.textContent += introText.charAt(textIndex);
+            textIndex++;
+            setTimeout(typeEffect, 70);
+        } else {
+            setTimeout(() => {
+                introScreen.classList.add('fade-out');
+                document.body.classList.remove('is-loading');
+            }, 1500);
+        }
+    };
+
+    // Start intro after a small delay
+    setTimeout(typeEffect, 1000);
+
+    // 2. Background Music Logic
+    const musicBtn = document.getElementById('music-btn');
+    const bgMusic = document.getElementById('bg-music');
+    let isPlaying = false;
+
+    if (musicBtn && bgMusic) {
+        // Function to unlock audio (required by modern browsers)
+        const unlockAudio = () => {
+            if (bgMusic.paused && !isPlaying) {
+                // Just prepare it without playing
+                bgMusic.play().then(() => {
+                    bgMusic.pause();
+                    bgMusic.currentTime = 0;
+                }).catch(() => { });
+            }
+            window.removeEventListener('click', unlockAudio);
+            window.removeEventListener('touchstart', unlockAudio);
+        };
+
+        window.addEventListener('click', unlockAudio);
+        window.addEventListener('touchstart', unlockAudio);
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<span class="music-icon">🎵</span>';
+                musicBtn.style.background = 'rgba(255, 255, 255, 0.4)';
+            } else {
+                bgMusic.play().catch(e => {
+                    // If play still fails, we just don't alert, 
+                    // most users will naturally click again or have interacted by now
+                    console.log("Play failed, interaction needed.");
+                });
+                musicBtn.innerHTML = '<span class="music-icon">⏸️</span>';
+                musicBtn.style.background = 'var(--primary)';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Add cursor interaction for music button
+        musicBtn.addEventListener('mouseenter', () => {
+            outline.style.transform = 'scale(1.5)';
+            outline.style.backgroundColor = 'rgba(255, 77, 109, 0.1)';
+        });
+        musicBtn.addEventListener('mouseleave', () => {
+            outline.style.transform = 'scale(1)';
+            outline.style.backgroundColor = 'transparent';
+        });
+    }
+
+    // 3. Scroll-based Timeline Reveal
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    timelineItems.forEach(item => timelineObserver.observe(item));
+
+    // 4. Easter Eggs
+    let clickCount = 0;
+    const secretModal = document.getElementById('secret-message');
+    const proposalModal = document.getElementById('proposal-modal');
+
+    // Click anywhere 10 times
+    window.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('.modal')) return;
+
+        clickCount++;
+        if (clickCount === 10) {
+            if (secretModal) secretModal.classList.remove('hidden');
+            clickCount = 0;
+        }
+    });
+
+    // Press "L" key
+    window.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'l') {
+            if (proposalModal) proposalModal.classList.remove('hidden');
+        }
+    });
+
+    // Modal Close Logic
+    const closeBtns = document.querySelectorAll('.btn-close');
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const modal = btn.closest('.modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            } else {
+                // Fallback for both modals
+                const sm = document.getElementById('secret-message');
+                const pm = document.getElementById('proposal-modal');
+                if (sm) sm.classList.add('hidden');
+                if (pm) pm.classList.add('hidden');
+            }
+        });
+
+        btn.addEventListener('mouseenter', () => {
+            outline.style.transform = 'scale(1.5)';
+            outline.style.backgroundColor = 'rgba(255, 77, 109, 0.1)';
+        });
+        btn.addEventListener('mouseleave', () => {
+            outline.style.transform = 'scale(1)';
+            outline.style.backgroundColor = 'transparent';
+        });
+    });
+
+    // Close on click outside modal content
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+
     // Initial check
     revealOnScroll();
 });

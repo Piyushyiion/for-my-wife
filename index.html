@@ -12,94 +12,225 @@
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600&display=swap"
         rel="stylesheet">
 </head>
-<div class="mesh-gradient"></div>
-<div class="noise-overlay"></div>
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
-<div class="progress-bar"></div>
 
-<header>
-    <h1 class="romantic-title">To My Sweetheart</h1>
-    <p class="subtitle">A Journey Through Our Special Moments...</p>
-</header>
-
-<main class="gallery">
-    <section class="photo-card" data-reveal>
-        <div class="image-container shadow-premium">
-            <img src="images/img1.jpg" alt="Rooftop Moments">
+<body class="is-loading">
+    <div id="intro-screen">
+        <div class="intro-content">
+            <h1 id="typewriter"></h1>
         </div>
-        <div class="caption">
-            <h2>High On Love</h2>
-            <p>From the rooftops to the sky, every moment with you is an adventure I never want to end.</p>
+    </div>
+
+    <div class="mesh-gradient"></div>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="progress-bar"></div>
+
+    <button id="music-btn" class="music-control glass shadow-premium" aria-label="Toggle Music">
+        <span class="music-icon">🎵</span>
+    </button>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-So-It-Begins-Inspired-By-Crush-Music.mp3"
+            type="audio/mpeg">
+    </audio>
+
+    <header>
+        <h1 class="romantic-title">To My Sweetheart</h1>
+        <p class="subtitle">A Journey Through Our Special Moments...</p>
+    </header>
+
+    <main class="gallery">
+        <section class="photo-card" data-reveal>
+            <div class="image-container shadow-premium">
+                <img src="images/img1.jpg" alt="Rooftop Moments">
+            </div>
+            <div class="caption">
+                <h2>High On Love</h2>
+                <p>From the rooftops to the sky, every moment with you is an adventure I never want to end.</p>
+            </div>
+        </section>
+
+        <section class="photo-card" data-reveal>
+            <div class="image-container shadow-premium">
+                <img src="images/img2.jpg" alt="Sunlit Beauty">
+            </div>
+            <div class="caption">
+                <h2>The Perfect Glow</h2>
+                <p>Whether it's the sunlight or your smile, you light up my world like nobody else can.</p>
+            </div>
+        </section>
+
+        <section class="photo-card" data-reveal>
+            <div class="image-container shadow-premium">
+                <img src="images/img3.jpg" alt="Holding Hands">
+            </div>
+            <div class="caption">
+                <h2>Our Silent Vows</h2>
+                <p>Under the stadium lights or the moonlit sky, as long as I'm holding your hand, I'm home.</p>
+            </div>
+        </section>
+
+        <section class="photo-card" data-reveal>
+            <div class="image-container shadow-premium">
+                <img src="images/img4.jpg" alt="Beautiful Smiles">
+            </div>
+            <div class="caption">
+                <h2>Pure Happiness</h2>
+                <p>That sparkle in your eyes is my favorite thing to see. Thank you for being my constant joy.</p>
+            </div>
+        </section>
+
+        <header class="wedding-header" data-reveal>
+            <h1 class="romantic-title">Our Forever Chapter</h1>
+            <p class="subtitle">And then, our forever began...</p>
+        </header>
+
+        <div class="wedding-grid">
+            <section class="wedding-card hero" data-reveal>
+                <div class="image-container shadow-premium">
+                    <img src="images/wedding1.jpg" alt="A Lifetime Promise">
+                </div>
+                <div class="caption">
+                    <h2>A Lifetime Promise</h2>
+                    <p>Standing together, holding hands under the open sky – the moment I knew our adventure together
+                        had just beginning.</p>
+                </div>
+            </section>
+
+            <section class="wedding-card" data-reveal>
+                <div class="image-container shadow-premium">
+                    <img src="images/wedding2.jpg" alt="The Perfect Frame">
+                </div>
+                <div class="caption">
+                    <h2>The Perfect Frame</h2>
+                    <p>Every time I look at you, I see the world I want to build. You are my home and my heart.</p>
+                </div>
+            </section>
+
+            <section class="wedding-card" data-reveal>
+                <div class="image-container shadow-premium">
+                    <img src="images/wedding3.jpg" alt="My Constant Support">
+                </div>
+                <div class="caption">
+                    <h2>My Constant Support</h2>
+                    <p>No matter where life takes us, I know I'll always have you to lean on. Your love is my strongest
+                        foundation.</p>
+                </div>
+            </section>
+
+            <section class="wedding-card" data-reveal>
+                <div class="image-container shadow-premium">
+                    <img src="images/wedding4.jpg" alt="Our Golden Hour">
+                </div>
+                <div class="caption">
+                    <h2>Our Golden Hour</h2>
+                    <p>In the quiet moments when the sun sets, my love for you only grows brighter. You are my sunshine.
+                    </p>
+                </div>
+            </section>
+
+            <section class="wedding-card" data-reveal>
+                <div class="image-container shadow-premium">
+                    <img src="images/wedding5.jpg" alt="Radiant Smiles">
+                </div>
+                <div class="caption">
+                    <h2>Purest Joy</h2>
+                    <p>That look in your eyes and the smile on your face – it’s all I ever need to be happy. I love you
+                        forever.</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="timeline-section" data-reveal>
+            <div class="timeline-container">
+                <h2 class="timeline-title">Our Milestone Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass shadow-premium">
+                            <h3>Our First Meet</h3>
+                            <p>The day my life changed forever. That first smile was all it took...</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass shadow-premium">
+                            <h3>Falling in Love</h3>
+                            <p>Every conversation made me realize you're the one I've been waiting for.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass shadow-premium">
+                            <h3>The Big 'YES'</h3>
+                            <p>When you agreed to walk this life with me. My happiest moment.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-reveal>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass shadow-premium">
+                            <h3>Forever & Always</h3>
+                            <p>To many more years of love, laughter, and beautiful memories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="love-letter-section" data-reveal>
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="wax-seal">💖</div>
+                <div class="letter">
+                    <p>To my beautiful wife,</p>
+                    <p>Every day with you feels like a gift. You're my best friend, my soulmate, and my forever
+                        Valentine.
+                        I'm so lucky to have you in my life.</p>
+                    <p>Yours forever, <br> piyu</p>
+                </div>
+            </div>
+            <p class="envelope-hint">Tap the seal to open our letter... ✨</p>
         </div>
     </section>
 
-    <section class="photo-card" data-reveal>
-        <div class="image-container shadow-premium">
-            <img src="images/img2.jpg" alt="Sunlit Beauty">
-        </div>
-        <div class="caption">
-            <h2>The Perfect Glow</h2>
-            <p>Whether it's the sunlight or your smile, you light up my world like nobody else can.</p>
-        </div>
-    </section>
-
-    <section class="photo-card" data-reveal>
-        <div class="image-container shadow-premium">
-            <img src="images/img3.jpg" alt="Holding Hands">
-        </div>
-        <div class="caption">
-            <h2>Our Silent Vows</h2>
-            <p>Under the stadium lights or the moonlit sky, as long as I'm holding your hand, I'm home.</p>
-        </div>
-    </section>
-
-    <section class="photo-card" data-reveal>
-        <div class="image-container shadow-premium">
-            <img src="images/img4.jpg" alt="Beautiful Smiles">
-        </div>
-        <div class="caption">
-            <h2>Pure Happiness</h2>
-            <p>That sparkle in your eyes is my favorite thing to see. Thank you for being my constant joy.</p>
-        </div>
-    </section>
-</main>
-
-<section class="love-letter-section" data-reveal>
-    <div class="envelope-wrapper">
-        <div class="envelope" id="envelope">
-            <div class="wax-seal">💖</div>
-            <div class="letter">
-                <p>To my beautiful wife,</p>
-                <p>Every day with you feels like a gift. You're my best friend, my soulmate, and my forever Valentine.
-                    I'm so lucky to have you in my life.</p>
-                <p>Yours forever, <br> piyu</p>
+    <section class="final-surprise">
+        <div class="surprise-content glass shadow-premium">
+            <h2 class="question">Will you be my Valentine forever? 💍</h2>
+            <div class="button-group">
+                <button id="yesBtn" class="btn btn-yes">YES 💖</button>
+                <button id="noBtn" class="btn btn-no">NO 😅</button>
             </div>
         </div>
-        <p class="envelope-hint">Tap the seal to open our letter... ✨</p>
-    </div>
-</section>
+    </section>
 
-<section class="final-surprise">
-    <div class="surprise-content glass shadow-premium">
-        <h2 class="question">Will you be my Valentine forever? 💍</h2>
-        <div class="button-group">
-            <button id="yesBtn" class="btn btn-yes">YES 💖</button>
-            <button id="noBtn" class="btn btn-no">NO 😅</button>
+    <div id="success-overlay" class="hidden">
+        <div class="celebration-content">
+            <h1 class="yay">YAYYY! 💖✨</h1>
+            <p>I knew you'd say yes! You're my forever Valentine.</p>
+            <div class="heart-rain"></div>
         </div>
     </div>
-</section>
 
-<div id="success-overlay" class="hidden">
-    <div class="celebration-content">
-        <h1 class="yay">YAYYY! 💖✨</h1>
-        <p>I knew you'd say yes! You're my forever Valentine.</p>
-        <div class="heart-rain"></div>
+    <div id="secret-message" class="modal hidden">
+        <div class="modal-content glass shadow-premium">
+            <h2>A Secret for You... 🤫</h2>
+            <p>I love you more than words can ever express. Thank you for being my inspiration every single day.</p>
+            <button class="btn btn-close">Close 💖</button>
+        </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script src="script.js"></script>
+    <div id="proposal-modal" class="modal hidden">
+        <div class="modal-content glass shadow-premium">
+            <h2 class="romantic-title">My Forever...</h2>
+            <p>Every second with you is a treasure. I'll love you until the end of time. 💍</p>
+            <button class="btn btn-close">Back to Us 💖</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

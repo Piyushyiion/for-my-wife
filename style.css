@@ -5,9 +5,11 @@
     --accent: #fff0f3;
     --text: #4a0e1c;
     --bg: #fffafa;
-    --shadow: rgba(255, 77, 109, 0.15);
-    --glass: rgba(255, 255, 255, 0.5);
+    --shadow: rgba(255, 77, 109, 0.2);
+    --glass: rgba(255, 255, 255, 0.4);
+    --glass-shine: rgba(255, 255, 255, 0.6);
     --gold: #d4af37;
+    --black: #0a0a0a;
 }
 
 * {
@@ -86,7 +88,7 @@ body {
     left: 0;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 1000000;
     transition: transform 0.1s ease;
 }
 
@@ -99,7 +101,7 @@ body {
     left: 0;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 999999;
     transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
 }
 
@@ -121,6 +123,26 @@ header {
     align-items: center;
     text-align: center;
     padding: 2rem;
+}
+
+.wedding-header {
+    width: 100%;
+    text-align: center;
+    padding: 6rem 2rem;
+    margin: 4rem 0;
+    position: relative;
+}
+
+.wedding-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 77, 109, 0.1) 0%, transparent 70%);
+    z-index: -1;
 }
 
 .romantic-title {
@@ -248,16 +270,33 @@ header {
 }
 
 .glass {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 60px;
-    padding: 6rem 3rem;
-    text-align: center;
-    width: 100%;
-    max-width: 700px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+    background: var(--glass);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.05),
+        inset 0 0 20px var(--glass-shine);
+}
+
+.glass::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+    transition: transform 0.8s ease;
+}
+
+.glass:hover::before {
+    transform: translate(10%, 10%);
 }
 
 .question {
@@ -351,7 +390,7 @@ header {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Sparkle Trail */
@@ -485,5 +524,337 @@ header {
 
     .romantic-title {
         font-size: clamp(3rem, 12vw, 5rem);
+    }
+}
+
+/* Cinematic Intro */
+#intro-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.5s;
+}
+
+#intro-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.intro-content h1 {
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    font-size: clamp(2rem, 8vw, 4rem);
+    text-align: center;
+    max-width: 80%;
+}
+
+/* Floating Music Control */
+.music-control {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.music-control:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: var(--primary);
+    color: white;
+}
+
+/* Timeline Styles */
+.timeline-section {
+    padding: 10rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 5rem;
+}
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50%;
+    position: relative;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 1s ease;
+}
+
+.timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 50%;
+    transform: translateX(50px);
+}
+
+.timeline-item.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 2rem;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px var(--primary);
+    z-index: 2;
+}
+
+.timeline-content {
+    width: 85%;
+    padding: 2.5rem !important;
+}
+
+.timeline-img-container {
+    width: 100%;
+    height: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.timeline-content:hover .timeline-img-container img {
+    transform: scale(1.1);
+}
+
+.timeline-content h3 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    transition: opacity 0.5s ease;
+}
+
+.modal-content {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    padding: 4rem !important;
+}
+
+.btn-close {
+    margin-top: 2rem;
+    padding: 1rem 3rem !important;
+    background: var(--primary);
+    color: white;
+}
+
+.btn-close:hover {
+    background: var(--primary-light);
+    transform: scale(1.05) translateY(-2px);
+}
+
+
+/* --- Wedding Story Grid --- */
+.wedding-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 10rem;
+}
+
+.wedding-card {
+    position: relative;
+    border-radius: 40px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.wedding-card.hero {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
+    padding: 2rem;
+    gap: 3rem;
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    background: radial-gradient(circle at top left, rgba(255, 77, 109, 0.05), transparent);
+}
+
+.wedding-card .image-container {
+    aspect-ratio: auto;
+    height: 100%;
+    margin-bottom: 0;
+    border-radius: 25px;
+}
+
+.wedding-card.hero .image-container {
+    height: 60vh;
+}
+
+.wedding-card:not(.hero) {
+    display: flex;
+    flex-direction: column;
+}
+
+.wedding-card:not(.hero) .image-container {
+    height: 350px;
+}
+
+.wedding-card .caption {
+    padding: 2rem;
+    text-align: left !important;
+}
+
+.wedding-card h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.wedding-card p {
+    font-size: 1.1rem;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+.wedding-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(255, 77, 109, 0.15);
+    border-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .wedding-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wedding-card.hero {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+    }
+
+    .wedding-card.hero .image-container {
+        height: 40vh;
+    }
+}
+
+/* Micro-interactions */
+.photo-card .image-container:hover {
+    box-shadow: 0 30px 60px var(--shadow);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.05);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+.wax-seal {
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 20px var(--primary-light), 0 0 10px white;
+    }
+
+    100% {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
+body.is-loading {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-dot {
+        left: 20px;
+    }
+
+    .timeline-item {
+        justify-content: flex-start;
+        padding-left: 50px;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .timeline-item:nth-child(even) {
+        padding-left: 50px;
     }
 }
